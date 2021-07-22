@@ -2,7 +2,7 @@
 
 Clonez le projet :
 ```
-$ git clone https://github.com/OpenClassrooms-Student-Center/Billed-app-FR.git
+$ git clone https://github.com/BihelCharly/CharlyBIHEL_9_15072021.git
 ```
 
 Allez au repo cloné :
