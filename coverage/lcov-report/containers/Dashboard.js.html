@@ -240,9 +240,7 @@
 <a name='L181'></a><a href='#L181'>181</a>
 <a name='L182'></a><a href='#L182'>182</a>
 <a name='L183'></a><a href='#L183'>183</a>
-<a name='L184'></a><a href='#L184'>184</a>
-<a name='L185'></a><a href='#L185'>185</a>
-<a name='L186'></a><a href='#L186'>186</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L184'></a><a href='#L184'>184</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -262,7 +260,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -343,9 +340,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -435,34 +431,33 @@ import USERS_TEST from '../constants/usersTest.js'
 import Logout from "./Logout.js"
 &nbsp;
 export const filteredBills = (data, status) =&gt; {
-  return (data &amp;&amp; data.length) ?
-    data.filter(bill =&gt; {
+    return (data &amp;&amp; data.length) ?
+        data.filter(bill =&gt; {
 &nbsp;
-      let selectCondition
+            let selectCondition
 &nbsp;
-      // in jest environment
-      <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof jest !== 'undefined') {
-        selectCondition = (bill.status === status)
-      } else {
-        // in prod environment
-        const userEmail = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem("user")).email</span>
-<span class="cstat-no" title="statement not covered" >        selectCondition =</span>
-          (bill.status === status) &amp;&amp;
-          [...USERS_TEST, userEmail].includes(bill.email)
-      }
+            // in jest environment
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof jest !== 'undefined') {
+                selectCondition = (bill.status === status)
+            } else {
+                // in prod environment
+                const userEmail = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem("user")).email</span>
+<span class="cstat-no" title="statement not covered" >                selectCondition =</span>
+                    (bill.status === status) &amp;&amp; [...USERS_TEST, userEmail].includes(bill.email)
+            }
 &nbsp;
-      return selectCondition
-    }) : []
+            return selectCondition
+        }) : []
 }
 &nbsp;
 export const card = (bill) =&gt; {
-  const firstAndLastNames = bill.email.split('@')[0]
-  const firstName = firstAndLastNames.includes('.') ?
-<span class="branch-0 cbranch-no" title="branch not covered" >    firstAndLastNames.split('.')[0] </span>: ''
-  const lastName = firstAndLastNames.includes('.') ?
-<span class="branch-0 cbranch-no" title="branch not covered" >  firstAndLastNames.split('.')[1] </span>: firstAndLastNames
+    const firstAndLastNames = bill.email.split('@')[0]
+    const firstName = firstAndLastNames.includes('.') ?
+<span class="branch-0 cbranch-no" title="branch not covered" >        firstAndLastNames.split('.')[0] </span>: ''
+    const lastName = firstAndLastNames.includes('.') ?
+<span class="branch-0 cbranch-no" title="branch not covered" >        firstAndLastNames.split('.')[1] </span>: firstAndLastNames
 &nbsp;
-  return (`
+    return (`
     &lt;div class='bill-card' id='open-bill${bill.id}' data-testid='open-bill${bill.id}'&gt;
       &lt;div class='bill-card-name-container'&gt;
         &lt;div class='bill-card-name'&gt; ${firstName} ${lastName} &lt;/div&gt;
@@ -481,137 +476,136 @@ export const card = (bill) =&gt; {
 }
 &nbsp;
 export const cards = (bills) =&gt; {
-  return bills &amp;&amp; bills.length ? bills.map(bill =&gt; card(bill)).join("") : ""
+    return bills &amp;&amp; bills.length ? bills.map(bill =&gt; card(bill)).join("") : ""
 }
 &nbsp;
 export const getStatus = (index) =&gt; {
-  switch (index) {
-    case 1:
-      return "pending"
-    case 2:
-      return "accepted"
-    case 3:
-      return "refused"
-  }
+    switch (index) {
+        case 1:
+            return "pending"
+        case 2:
+            return "accepted"
+        case 3:
+            return "refused"
+    }
 }
 &nbsp;
 export default class {
-  constructor({ document, onNavigate, firestore, bills, localStorage }) {
-    this.document = document
-    this.onNavigate = onNavigate
-    this.firestore = firestore
-    $('#arrow-icon1').click(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.handleShowTickets(e, bills, 1))</span>
-    $('#arrow-icon2').click(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.handleShowTickets(e, bills, 2))</span>
-    $('#arrow-icon3').click(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.handleShowTickets(e, bills, 3))</span>
-    this.getBillsAllUsers()
-    new Logout({ localStorage, onNavigate })
-  }
-&nbsp;
-  handleClickIconEye = () =&gt; {
-    const billUrl = $('#icon-eye-d').attr("data-bill-url")
-    const imgWidth = Math.floor($('#modaleFileAdmin1').width() * 0.8)
-    $('#modaleFileAdmin1').find(".modal-body").html(`&lt;div style='text-align: center;'&gt;&lt;img width=${imgWidth} src=${billUrl} /&gt;&lt;/div&gt;`)
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof $('#modaleFileAdmin1').modal === 'function') <span class="cstat-no" title="statement not covered" >$('#modaleFileAdmin1').modal('show')</span>
-  }
-&nbsp;
-  handleEditTicket(e, bill, bills) {
-    if (this.counter === undefined || this.id !== bill.id) this.counter = 0
-    if (this.id === undefined || this.id !== bill.id) this.id = bill.id
-    if (this.counter % 2 === 0) {
-      bills.forEach(b =&gt; {
-        $(`#open-bill${b.id}`).css({ background: '#0D5AE5' })
-      })
-      $(`#open-bill${bill.id}`).css({ background: '#2A2B35' })
-      $('.dashboard-right-container div').html(DashboardFormUI(bill))
-      $('.vertical-navbar').css({ height: '150vh' })
-      this.counter ++
-    } else {
-      $(`#open-bill${bill.id}`).css({ background: '#0D5AE5' })
-&nbsp;
-      $('.dashboard-right-container div').html(`
-        &lt;div id="big-billed-icon"&gt; ${BigBilledIcon} &lt;/div&gt;
-      `)
-      $('.vertical-navbar').css({ height: '120vh' })
-      this.counter ++
-    }
-    $('#icon-eye-d').click(this.handleClickIconEye)
-    $('#btn-accept-bill').click(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.handleAcceptSubmit(e, bill))</span>
-    $('#btn-refuse-bill').click(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.handleRefuseSubmit(e, bill))</span>
-  }
-&nbsp;
-  handleAcceptSubmit = (e, bill) =&gt; {
-    const newBill = {
-      ...bill,
-      status: 'accepted',
-      commentAdmin: $('#commentary2').val()
-    }
-    this.updateBill(newBill)
-    this.onNavigate(ROUTES_PATH['Dashboard'])
-  }
-&nbsp;
-  handleRefuseSubmit = (e, bill) =&gt; {
-    const newBill = {
-      ...bill,
-      status: 'refused',
-      commentAdmin: $('#commentary2').val()
-    }
-    this.updateBill(newBill)
-    this.onNavigate(ROUTES_PATH['Dashboard'])
-  }
-&nbsp;
-  handleShowTickets(e, bills, index) {
-    if (this.counter === undefined || this.index !== index) this.counter = 0
-    if (this.index === undefined || this.index !== index) this.index = index
-    if (this.counter % 2 === 0) {
-      $(`#arrow-icon${this.index}`).css({ transform: 'rotate(0deg)'})
-      $(`#status-bills-container${this.index}`)
-        .html(cards(filteredBills(bills, getStatus(this.index))))
-      this.counter ++
-    } else {
-      $(`#arrow-icon${this.index}`).css({ transform: 'rotate(90deg)'})
-      $(`#status-bills-container${this.index}`)
-        .html("")
-      this.counter ++
+    constructor({ document, onNavigate, firestore, bills, localStorage }) {
+        this.document = document
+        this.onNavigate = onNavigate
+        this.firestore = firestore
+        $('#arrow-icon1').click(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.handleShowTickets(e, bills, 1))</span>
+        $('#arrow-icon2').click(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.handleShowTickets(e, bills, 2))</span>
+        $('#arrow-icon3').click(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.handleShowTickets(e, bills, 3))</span>
+        this.getBillsAllUsers()
+        new Logout({ localStorage, onNavigate })
     }
 &nbsp;
-    bills.forEach(bill =&gt; {
-      $(`#open-bill${bill.id}`).click(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.handleEditTicket(e, bill, bills))</span>
-    })
-&nbsp;
-    return bills
-&nbsp;
-  }
-&nbsp;
-  // not need to cover this function by tests
-  getBillsAllUsers = () =&gt; {
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.firestore) {
-<span class="cstat-no" title="statement not covered" >      return this.firestore</span>
-      .bills()
-      .get()
-      .then(<span class="fstat-no" title="function not covered" >sn</span>apshot =&gt; {
-        const bills = <span class="cstat-no" title="statement not covered" >snapshot.docs</span>
-        .map(<span class="fstat-no" title="function not covered" >do</span>c =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
-          id: doc.id,
-          ...doc.data(),
-          date: doc.data().date,
-          status: doc.data().status
-        }))
-<span class="cstat-no" title="statement not covered" >        return bills</span>
-      })
-      .catch(console.log)
+    handleClickIconEye = () =&gt; {
+        const billUrl = $('#icon-eye-d').attr("data-bill-url")
+        const imgWidth = Math.floor($('#modaleFileAdmin1').width() * 0.8)
+        $('#modaleFileAdmin1').find(".modal-body").html(`&lt;div style='text-align: center;'&gt;&lt;img width=${imgWidth} src=${billUrl} /&gt;&lt;/div&gt;`)
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof $('#modaleFileAdmin1').modal === 'function') <span class="cstat-no" title="statement not covered" >$('#modaleFileAdmin1').modal('show')</span>
     }
-  }
-    
-  // not need to cover this function by tests
-  updateBill = (bill) =&gt; {
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.firestore) {
-<span class="cstat-no" title="statement not covered" >    return this.firestore</span>
-      .bill(bill.id)
-      .update(bill)
-      .then(<span class="fstat-no" title="function not covered" >bi</span>ll =&gt; <span class="cstat-no" title="statement not covered" >bill)</span>
-      .catch(console.log)
+&nbsp;
+    handleEditTicket(e, bill, bills) {
+        if (this.counter === undefined || this.id !== bill.id) this.counter = 0
+        if (this.id === undefined || this.id !== bill.id) this.id = bill.id
+        if (this.counter % 2 === 0) {
+            bills.forEach(b =&gt; {
+                $(`#open-bill${b.id}`).css({ background: '#0D5AE5' })
+            })
+            $(`#open-bill${bill.id}`).css({ background: '#2A2B35' })
+            $('.dashboard-right-container div').html(DashboardFormUI(bill))
+            $('.vertical-navbar').css({ height: '150vh' })
+            this.counter++
+        } else {
+            $(`#open-bill${bill.id}`).css({ background: '#0D5AE5' })
+                // BUG REPORT #4 - DASHBOARD - modification de la méthod d'insertion de bill
+                //$('.dashboard-right-container div').html(`&lt;div id="big-billed-icon"&gt; ${BigBilledIcon} &lt;/div&gt;`)
+            $('.dashboard-right-container div').html(DashboardFormUI(bill))
+            $('.vertical-navbar').css({ height: '120vh' })
+            this.counter++
+        }
+        $('#icon-eye-d').click(this.handleClickIconEye)
+        $('#btn-accept-bill').click(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.handleAcceptSubmit(e, bill))</span>
+        $('#btn-refuse-bill').click(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.handleRefuseSubmit(e, bill))</span>
     }
-  }
+&nbsp;
+    handleAcceptSubmit = (e, bill) =&gt; {
+        const newBill = {
+            ...bill,
+            status: 'accepted',
+            commentAdmin: $('#commentary2').val()
+        }
+        this.updateBill(newBill)
+        this.onNavigate(ROUTES_PATH['Dashboard'])
+    }
+&nbsp;
+    handleRefuseSubmit = (e, bill) =&gt; {
+        const newBill = {
+            ...bill,
+            status: 'refused',
+            commentAdmin: $('#commentary2').val()
+        }
+        this.updateBill(newBill)
+        this.onNavigate(ROUTES_PATH['Dashboard'])
+    }
+&nbsp;
+    handleShowTickets(e, bills, index) {
+        if (this.counter === undefined || this.index !== index) this.counter = 0
+        if (this.index === undefined || this.index !== index) this.index = index
+        if (this.counter % 2 === 0) {
+            $(`#arrow-icon${this.index}`).css({ transform: 'rotate(0deg)' })
+            $(`#status-bills-container${this.index}`)
+                .html(cards(filteredBills(bills, getStatus(this.index))))
+            this.counter++
+        } else {
+            $(`#arrow-icon${this.index}`).css({ transform: 'rotate(90deg)' })
+            $(`#status-bills-container${this.index}`)
+                .html("")
+            this.counter++
+        }
+&nbsp;
+        bills.forEach(bill =&gt; {
+            $(`#open-bill${bill.id}`).click(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.handleEditTicket(e, bill, bills))</span>
+        })
+&nbsp;
+        return bills
+&nbsp;
+    }
+&nbsp;
+    // not need to cover this function by tests
+    getBillsAllUsers = () =&gt; {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (this.firestore) {
+<span class="cstat-no" title="statement not covered" >            return this.firestore</span>
+                .bills()
+                .get()
+                .then(<span class="fstat-no" title="function not covered" >sn</span>apshot =&gt; {
+                    const bills = <span class="cstat-no" title="statement not covered" >snapshot.docs</span>
+                        .map(<span class="fstat-no" title="function not covered" >do</span>c =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+                            id: doc.id,
+                            ...doc.data(),
+                            date: doc.data().date,
+                            status: doc.data().status
+                        }))
+<span class="cstat-no" title="statement not covered" >                    return bills</span>
+                })
+                .catch(console.log)
+        }
+    }
+&nbsp;
+    // not need to cover this function by tests
+    updateBill = (bill) =&gt; {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (this.firestore) {
+<span class="cstat-no" title="statement not covered" >            return this.firestore</span>
+                .bill(bill.id)
+                .update(bill)
+                .then(<span class="fstat-no" title="function not covered" >bi</span>ll =&gt; <span class="cstat-no" title="statement not covered" >bill)</span>
+                .catch(console.log)
+        }
+    }
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -619,7 +613,7 @@ export default class {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Jul 22 2021 11:18:27 GMT+0200 (heure d’été d’Europe centrale)
+                at Sun Jul 25 2021 18:21:40 GMT+0200 (heure d’été d’Europe centrale)
             </div>
         </div>
         <script src="../prettify.js"></script>

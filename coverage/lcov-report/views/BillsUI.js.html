@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">88.24% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/12</span>
+                <span class='fraction'>15/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">66.67% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/8</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">86.67% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/10</span>
+                <span class='fraction'>13/15</span>
             </div>
         
             
@@ -136,7 +136,20 @@
 <a name='L77'></a><a href='#L77'>77</a>
 <a name='L78'></a><a href='#L78'>78</a>
 <a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -159,6 +172,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -214,15 +239,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import VerticalLayout from './VerticalLayout.js'
-import ErrorPage from "./ErrorPage.js"
-import LoadingPage from "./LoadingPage.js"
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import VerticalLayout from './VerticalLayout.js';
+import ErrorPage from "./ErrorPage.js";
+import LoadingPage from "./LoadingPage.js";
+import { formatDate } from "../app/format.js";
 &nbsp;
-import Actions from './Actions.js'
+import Actions from './Actions.js';
 &nbsp;
 const row = (bill) =&gt; {
-  return (`
+    return (`
     &lt;tr&gt;
       &lt;td&gt;${bill.type}&lt;/td&gt;
       &lt;td&gt;${bill.name}&lt;/td&gt;
@@ -233,16 +258,28 @@ const row = (bill) =&gt; {
         ${Actions(bill.fileUrl)}
       &lt;/td&gt;
     &lt;/tr&gt;
-    `)
-  }
+    `);
+};
 &nbsp;
 const rows = (data) =&gt; {
-  return (data &amp;&amp; data.length) ? data.map(bill =&gt; row(bill)).join("") : ""
-}
+    if (data !== undefined) {
+        data.sort(function(a, b) {
+            return new Date(b.date) - new Date(a.date);
+        });
+        // data.forEach(element =&gt; {
+        //     formatDate(element.date.toString());
+        // });
+        const datas = data.map(bill =&gt; row(bill));
+        let join = datas.join("");
+        return join;
+    }
+&nbsp;
+};
+&nbsp;
 &nbsp;
 export default ({ data: bills, loading, error }) =&gt; {
-  
-  const modal = () =&gt; (`
+&nbsp;
+    const modal = () =&gt; (`
     &lt;div class="modal fade" id="modaleFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"&gt;
       &lt;div class="modal-dialog modal-dialog-centered modal-lg" role="document"&gt;
         &lt;div class="modal-content"&gt;
@@ -257,15 +294,15 @@ export default ({ data: bills, loading, error }) =&gt; {
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-  `)
+  `);
 &nbsp;
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (loading) {
-<span class="cstat-no" title="statement not covered" >    return LoadingPage()</span>
-  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (error) {
-<span class="cstat-no" title="statement not covered" >    return ErrorPage(error)</span>
-  }
-  
-  return (`
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (loading) {
+<span class="cstat-no" title="statement not covered" >        return LoadingPage();</span>
+    } else <span class="missing-if-branch" title="if path not taken" >I</span>if (error) {
+<span class="cstat-no" title="statement not covered" >        return ErrorPage(error);</span>
+    }
+&nbsp;
+    return (`
     &lt;div class='layout'&gt;
       ${VerticalLayout(120)}
       &lt;div class='content'&gt;
@@ -292,16 +329,15 @@ export default ({ data: bills, loading, error }) =&gt; {
         &lt;/div&gt;
       &lt;/div&gt;
       ${modal()}
-    &lt;/div&gt;`
-  )
-}</pre></td></tr></table></pre>
+    &lt;/div&gt;`);
+};</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Jul 22 2021 11:18:27 GMT+0200 (heure d’été d’Europe centrale)
+                at Sun Jul 25 2021 18:21:40 GMT+0200 (heure d’été d’Europe centrale)
             </div>
         </div>
         <script src="../prettify.js"></script>

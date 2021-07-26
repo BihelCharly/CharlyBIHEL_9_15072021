@@ -40,18 +40,14 @@ export default class {
                         .map(doc => {
                             try {
                                 return {
-                                    ...doc.data(),
-                                    date: formatDate(doc.data().date),
-                                    status: formatStatus(doc.data().status)
+                                    ...doc.data()
                                 }
                             } catch (e) {
                                 // if for some reason, corrupted data was introduced, we manage here failing formatDate function
                                 // log the error and return unformatted date in that case
                                 console.log(e, 'for', doc.data())
                                 return {
-                                    ...doc.data(),
-                                    date: doc.data().date,
-                                    status: formatStatus(doc.data().status)
+                                    ...doc.data()
                                 }
                             }
                         })

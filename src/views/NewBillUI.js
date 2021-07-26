@@ -2,7 +2,7 @@ import VerticalLayout from './VerticalLayout.js'
 
 export default () => {
 
-  return (`
+    return (`
     <div class='layout'>
       ${VerticalLayout(120)}
       <div class='content'>
@@ -27,7 +27,7 @@ export default () => {
                   </div>
                   <div class="col-half">
                     <label for="expense-name" class="bold-label">Nom de la dépense</label>
-                    <input type="text" class="form-control blue-border" data-testid="expense-name" placeholder="Vol Paris Londres" />
+                    <input type="text" class="form-control blue-border" data-testid="expense-name" placeholder="Vol Paris Londres" required />
                   </div>
                   <div class="col-half">
                     <label for="datepicker" class="bold-label">Date</label>

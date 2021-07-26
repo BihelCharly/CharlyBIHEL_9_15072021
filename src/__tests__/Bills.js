@@ -14,7 +14,7 @@ describe("Given I am connected as an employee", () => {
             document.body.innerHTML = html
             const dates = screen.getAllByText(/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/i).map(a => a.innerHTML)
                 // BUG REPORT #1 - BILLS - ajout de 'date' pour les para a & b
-            const antiChrono = (a, b) => ((a.date < b.date) ? 1 : -1)
+            const antiChrono = (a, b) => ((a < b) ? 1 : -1)
             const datesSorted = [...dates].sort(antiChrono)
             expect(dates).toEqual(datesSorted)
         })
