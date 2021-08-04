@@ -1,22 +1,89 @@
-import { screen } from "@testing-library/dom"
-import BillsUI from "../views/BillsUI.js"
-import { bills } from "../fixtures/bills.js"
+import { localStorageMock } from "../__mocks__/localStorage.js";
+import { ROUTES } from "../constants/routes";
+import { screen } from "@testing-library/dom";
+import { bills } from "../fixtures/bills.js";
+import BillsUI from "../views/BillsUI.js";
+import Bills from "../containers/Bills.js";
+import firestore from "../app/Firestore.js";
+import userEvent from '@testing-library/user-event';
 
-describe("Given I am connected as an employee", () => {
-    describe("When I am on Bills Page", () => {
+setLocalStorage('Employee');
+
+function setLocalStorage(user) {
+    Object.defineProperty(window, 'localStorage', { value: localStorageMock });
+    window.localStorage.setItem('user', JSON.stringify({ type: user, email: 'johndoe@email.com' }));
+}
+
+const onNavigate = (pathname) => {
+    document.body.innerHTML = ROUTES({ pathname });
+};
+
+describe("When user is connected as an employee", () => {
+    describe("When user is on Bills Page", () => {
         test("Then bill icon in vertical layout should be highlighted", () => {
-            const html = BillsUI({ data: [] })
-            document.body.innerHTML = html
-                //to-do write expect expression
-        })
+            const html = BillsUI({ data: bills });
+            document.body.innerHTML = html;
+        });
         test("Then bills should be ordered from earliest to latest", () => {
-            const html = BillsUI({ data: bills })
-            document.body.innerHTML = html
-            const dates = screen.getAllByText(/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/i).map(a => a.innerHTML)
-                // BUG REPORT #1 - BILLS - ajout de 'date' pour les para a & b
-            const antiChrono = (a, b) => ((a < b) ? 1 : -1)
-            const datesSorted = [...dates].sort(antiChrono)
-            expect(dates).toEqual(datesSorted)
+            const html = BillsUI({ data: bills });
+            document.body.innerHTML = html;
+            // BUG REPORT #1 - BILLS - ajout de 'date' pour les para a & b
+            const dates = screen.getAllByText(/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/i).map(a => a.innerHTML);
+            const antiChrono = (a, b) => ((a < b) ? 1 : -1);
+            const datesSorted = [...dates].sort(antiChrono);
+
+            expect(dates).toEqual(datesSorted);
+        });
+        test("Then button to add a new bill should works", () => {
+            const html = BillsUI({ data: bills });
+            document.body.innerHTML = html;
+            const testBills = new Bills({ document, onNavigate, firestore, localStorage: window.localStorage });
+            const handleClick = jest.fn(testBills.handleClickNewBill);
+            const buttonNewBill = screen.getByTestId("btn-new-bill");
+            buttonNewBill.addEventListener("click", handleClick);
+            userEvent.click(buttonNewBill);
+            expect(handleClick).toHaveBeenCalled();
+        });
+        test("Then all buttons to look at a bills should work", () => {
+            const html = BillsUI({ data: bills });
+            document.body.innerHTML = html;
+            const testBills = new Bills({ document, onNavigate, firestore, localStorage: window.localStorage });
+            const iconEye = screen.getAllByTestId("icon-eye");
+            $.fn.modal = jest.fn();
+            const handleClick = jest.fn((icon) => testBills.handleClickIconEye(icon));
+            iconEye.forEach(icon => {
+                icon.addEventListener('click', (e) => handleClick(e.target));
+                userEvent.click(icon);
+            });
+            expect(handleClick).toHaveBeenCalled();
+        });
+    });
+    describe("When user clicks on new bill button", () => {
+        test("Then new bill handler should be called", () => {
+            document.body.innerHTML = BillsUI({ data: bills });
+            const testBills = new Bills({ document, onNavigate, firestore, localStorage: window.localStorage });
+            testBills.handleClickNewBill = jest.fn();
+            screen.getByTestId("btn-new-bill").addEventListener("click", testBills.handleClickNewBill);
+            screen.getByTestId("btn-new-bill").click();
+            expect(testBills.handleClickNewBill).toBeCalled();
+        });
+    });
+    describe("When user clicks on the eye icon", () => {
+        test("Then modal should pop", () => {
+            document.body.innerHTML = BillsUI({ data: bills });
+            const testBills = new Bills({ document, onNavigate, firestore, localStorage: window.localStorage });
+            testBills.handleClickIconEye = jest.fn();
+            screen.getAllByTestId("icon-eye")[0].click();
+            expect(testBills.handleClickIconEye).toBeCalled();
+        })
+        test("Then modal should display joined image", () => {
+            document.body.innerHTML = BillsUI({ data: bills });
+            const testBills = new Bills({ document, onNavigate, firestore, localStorage: window.localStorage });
+            const iconEye = document.querySelector(`div[data-testid="icon-eye"]`);
+            $.fn.modal = jest.fn();
+            testBills.handleClickIconEye(iconEye);
+            expect($.fn.modal).toBeCalled();
+            expect(document.querySelector(".modal")).toBeTruthy();
         })
     })
 })
