@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1628088767446" clover="3.2.0">
-  <project timestamp="1628088767446" name="All files">
-    <metrics statements="216" coveredstatements="194" conditionals="101" coveredconditionals="80" methods="63" coveredmethods="47" elements="380" coveredelements="321" complexity="0" loc="216" ncloc="216" packages="3" files="16" classes="16"/>
+<coverage generated="1628247854506" clover="3.2.0">
+  <project timestamp="1628247854507" name="All files">
+    <metrics statements="211" coveredstatements="194" conditionals="99" coveredconditionals="81" methods="60" coveredmethods="47" elements="370" coveredelements="322" complexity="0" loc="211" ncloc="211" packages="3" files="16" classes="16"/>
     <package name="constants">
       <metrics statements="8" coveredstatements="8" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="1"/>
       <file name="routes.js" path="/home/kosmos/Documents/P9/CharlyBIHEL_9_15072021/src/constants/routes.js">
@@ -20,7 +20,7 @@
       </file>
     </package>
     <package name="containers">
-      <metrics statements="175" coveredstatements="154" conditionals="68" coveredconditionals="48" methods="47" coveredmethods="31"/>
+      <metrics statements="170" coveredstatements="153" conditionals="66" coveredconditionals="48" methods="44" coveredmethods="31"/>
       <file name="Bills.js" path="/home/kosmos/Documents/P9/CharlyBIHEL_9_15072021/src/containers/Bills.js">
         <metrics statements="16" coveredstatements="16" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="5"/>
         <line num="6" count="5" type="stmt"/>
@@ -145,29 +145,29 @@
         <line num="31" count="2" type="stmt"/>
         <line num="34" count="2" type="stmt"/>
         <line num="35" count="2" type="stmt"/>
-        <line num="41" count="2" type="stmt"/>
         <line num="42" count="2" type="stmt"/>
-        <line num="43" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="44" count="2" type="stmt"/>
+        <line num="43" count="2" type="stmt"/>
+        <line num="44" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="45" count="2" type="stmt"/>
         <line num="46" count="2" type="stmt"/>
         <line num="47" count="2" type="stmt"/>
         <line num="48" count="2" type="stmt"/>
-        <line num="52" count="2" type="stmt"/>
-        <line num="53" count="4" type="cond" truecount="1" falsecount="1"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="58" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="59" count="0" type="stmt"/>
+        <line num="49" count="2" type="stmt"/>
+        <line num="53" count="2" type="stmt"/>
+        <line num="54" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="59" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="60" count="0" type="stmt"/>
-        <line num="62" count="0" type="stmt"/>
-        <line num="65" count="0" type="stmt"/>
-        <line num="67" count="4" type="stmt"/>
-        <line num="72" count="2" type="stmt"/>
-        <line num="73" count="4" type="cond" truecount="1" falsecount="1"/>
-        <line num="74" count="0" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="68" count="4" type="stmt"/>
+        <line num="73" count="2" type="stmt"/>
+        <line num="74" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="75" count="0" type="stmt"/>
         <line num="82" count="0" type="stmt"/>
-        <line num="84" count="4" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="85" count="4" type="stmt"/>
       </file>
       <file name="Logout.js" path="/home/kosmos/Documents/P9/CharlyBIHEL_9_15072021/src/containers/Logout.js">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
@@ -180,7 +180,7 @@
         <line num="13" count="2" type="stmt"/>
       </file>
       <file name="NewBill.js" path="/home/kosmos/Documents/P9/CharlyBIHEL_9_15072021/src/containers/NewBill.js">
-        <metrics statements="29" coveredstatements="25" conditionals="9" coveredconditionals="5" methods="6" coveredmethods="3"/>
+        <metrics statements="24" coveredstatements="24" conditionals="7" coveredconditionals="5" methods="3" coveredmethods="3"/>
         <line num="7" count="4" type="stmt"/>
         <line num="8" count="4" type="stmt"/>
         <line num="9" count="4" type="stmt"/>
@@ -195,46 +195,41 @@
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
-        <line num="22" count="1" type="cond" truecount="4" falsecount="1"/>
-        <line num="35" count="1" type="stmt"/>
+        <line num="23" count="1" type="cond" truecount="4" falsecount="1"/>
         <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
-        <line num="40" count="4" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="41" count="4" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
         <line num="44" count="1" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
         <line num="58" count="1" type="stmt"/>
-        <line num="62" count="4" type="stmt"/>
-        <line num="63" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="64" count="0" type="stmt"/>
-        <line num="68" count="0" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
       </file>
     </package>
     <package name="views">
-      <metrics statements="33" coveredstatements="32" conditionals="28" coveredconditionals="27" methods="15" coveredmethods="15"/>
+      <metrics statements="33" coveredstatements="33" conditionals="28" coveredconditionals="28" methods="15" coveredmethods="15"/>
       <file name="Actions.js" path="/home/kosmos/Documents/P9/CharlyBIHEL_9_15072021/src/views/Actions.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="5" count="30" type="stmt"/>
       </file>
       <file name="BillsUI.js" path="/home/kosmos/Documents/P9/CharlyBIHEL_9_15072021/src/views/BillsUI.js">
-        <metrics statements="15" coveredstatements="14" conditionals="6" coveredconditionals="5" methods="6" coveredmethods="6"/>
+        <metrics statements="15" coveredstatements="15" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="6"/>
         <line num="8" count="7" type="stmt"/>
         <line num="9" count="28" type="stmt"/>
-        <line num="23" count="7" type="stmt"/>
-        <line num="24" count="12" type="cond" truecount="2" falsecount="0"/>
-        <line num="25" count="9" type="stmt"/>
-        <line num="26" count="23" type="stmt"/>
-        <line num="28" count="28" type="stmt"/>
-        <line num="29" count="9" type="stmt"/>
-        <line num="30" count="9" type="stmt"/>
-        <line num="38" count="13" type="stmt"/>
-        <line num="55" count="13" type="cond" truecount="2" falsecount="0"/>
-        <line num="56" count="1" type="stmt"/>
-        <line num="57" count="12" type="cond" truecount="1" falsecount="1"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="61" count="12" type="stmt"/>
+        <line num="25" count="7" type="stmt"/>
+        <line num="26" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="9" type="stmt"/>
+        <line num="28" count="23" type="stmt"/>
+        <line num="30" count="28" type="stmt"/>
+        <line num="31" count="9" type="stmt"/>
+        <line num="32" count="9" type="stmt"/>
+        <line num="39" count="15" type="stmt"/>
+        <line num="56" count="15" type="cond" truecount="2" falsecount="0"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="58" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="62" count="12" type="stmt"/>
       </file>
       <file name="DashboardFormUI.js" path="/home/kosmos/Documents/P9/CharlyBIHEL_9_15072021/src/views/DashboardFormUI.js">
         <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
@@ -251,7 +246,7 @@
       </file>
       <file name="ErrorPage.js" path="/home/kosmos/Documents/P9/CharlyBIHEL_9_15072021/src/views/ErrorPage.js">
         <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
-        <line num="5" count="5" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
       </file>
       <file name="LoadingPage.js" path="/home/kosmos/Documents/P9/CharlyBIHEL_9_15072021/src/views/LoadingPage.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -267,11 +262,11 @@
       </file>
       <file name="VerticalLayout.js" path="/home/kosmos/Documents/P9/CharlyBIHEL_9_15072021/src/views/VerticalLayout.js">
         <metrics statements="6" coveredstatements="6" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
-        <line num="7" count="37" type="stmt"/>
-        <line num="8" count="37" type="cond" truecount="2" falsecount="0"/>
-        <line num="9" count="25" type="stmt"/>
-        <line num="11" count="37" type="cond" truecount="4" falsecount="0"/>
-        <line num="12" count="19" type="stmt"/>
+        <line num="7" count="39" type="stmt"/>
+        <line num="8" count="39" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="27" type="stmt"/>
+        <line num="11" count="39" type="cond" truecount="4" falsecount="0"/>
+        <line num="12" count="21" type="stmt"/>
         <line num="29" count="18" type="stmt"/>
       </file>
     </package>

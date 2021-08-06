@@ -5,6 +5,7 @@ import { bills } from "../fixtures/bills.js";
 import BillsUI from "../views/BillsUI.js";
 import Bills from "../containers/Bills.js";
 import firestore from "../app/Firestore.js";
+import firebase from "../__mocks__/firebase";
 import userEvent from '@testing-library/user-event';
 
 setLocalStorage('Employee');
