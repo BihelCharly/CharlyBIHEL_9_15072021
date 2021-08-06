@@ -97,7 +97,7 @@ export default class {
             this.counter++
         } else {
             $(`#open-bill${bill.id}`).css({ background: '#0D5AE5' })
-                // BUG REPORT #4 - DASHBOARD - modification de la méthod d'insertion de bill
+                // BUG REPORT #4 - DASHBOARD - modification de la méthode d'insertion de bill
                 //$('.dashboard-right-container div').html(`<div id="big-billed-icon"> ${BigBilledIcon} </div>`)
             $('.dashboard-right-container div').html(DashboardFormUI(bill))
             $('.vertical-navbar').css({ height: '120vh' })

@@ -27,7 +27,6 @@ describe("When user is connected as an employee", () => {
         test("Then bills should be ordered from earliest to latest", () => {
             const html = BillsUI({ data: bills });
             document.body.innerHTML = html;
-            // BUG REPORT #1 - BILLS - ajout de 'date' pour les para a & b
             const dates = screen.getAllByText(/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/i).map(a => a.innerHTML);
             const antiChrono = (a, b) => ((a < b) ? 1 : -1);
             const datesSorted = [...dates].sort(antiChrono);
@@ -69,21 +68,50 @@ describe("When user is connected as an employee", () => {
         });
     });
     describe("When user clicks on the eye icon", () => {
-        test("Then modal should pop", () => {
-            document.body.innerHTML = BillsUI({ data: bills });
-            const testBills = new Bills({ document, onNavigate, firestore, localStorage: window.localStorage });
-            testBills.handleClickIconEye = jest.fn();
-            screen.getAllByTestId("icon-eye")[0].click();
-            expect(testBills.handleClickIconEye).toBeCalled();
+            test("Then modal should pop", () => {
+                document.body.innerHTML = BillsUI({ data: bills });
+                const testBills = new Bills({ document, onNavigate, firestore, localStorage: window.localStorage });
+                testBills.handleClickIconEye = jest.fn();
+                screen.getAllByTestId("icon-eye")[0].click();
+                expect(testBills.handleClickIconEye).toBeCalled();
+            })
+            test("Then modal should display joined image", () => {
+                document.body.innerHTML = BillsUI({ data: bills });
+                const testBills = new Bills({ document, onNavigate, firestore, localStorage: window.localStorage });
+                const iconEye = document.querySelector(`div[data-testid="icon-eye"]`);
+                $.fn.modal = jest.fn();
+                testBills.handleClickIconEye(iconEye);
+                expect($.fn.modal).toBeCalled();
+                expect(document.querySelector(".modal")).toBeTruthy();
+            })
         })
-        test("Then modal should display joined image", () => {
-            document.body.innerHTML = BillsUI({ data: bills });
-            const testBills = new Bills({ document, onNavigate, firestore, localStorage: window.localStorage });
-            const iconEye = document.querySelector(`div[data-testid="icon-eye"]`);
-            $.fn.modal = jest.fn();
-            testBills.handleClickIconEye(iconEye);
-            expect($.fn.modal).toBeCalled();
-            expect(document.querySelector(".modal")).toBeTruthy();
+        // GET
+    describe("Given I am connected as Employee", () => {
+        describe("When I'm in Dashboard", () => {
+            test("Then fetches bills with GET", async() => {
+                const spyTest = jest.spyOn(firebase, "get")
+                const bills = await firebase.get()
+                expect(spyTest).toHaveBeenCalledTimes(1)
+                expect(bills.data.length).toBe(4)
+            })
+            test("Then if it fails with 404 error", async() => {
+                firebase.get.mockImplementationOnce(() =>
+                    Promise.reject(new Error("Erreur 404"))
+                )
+                const html = BillsUI({ error: "Erreur 404" })
+                document.body.innerHTML = html
+                const message = await screen.getByText(/Erreur 404/)
+                expect(message).toBeTruthy()
+            })
+            test("Then if it fails with 500 error", async() => {
+                firebase.get.mockImplementationOnce(() =>
+                    Promise.reject(new Error("Erreur 500"))
+                )
+                const html = BillsUI({ error: "Erreur 500" })
+                document.body.innerHTML = html
+                const message = await screen.getByText(/Erreur 500/)
+                expect(message).toBeTruthy()
+            })
         })
     })
 })

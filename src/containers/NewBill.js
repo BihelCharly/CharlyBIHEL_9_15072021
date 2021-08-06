@@ -19,6 +19,7 @@ export default class NewBill {
         const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
         const filePath = e.target.value.split(/\\/g)
         const fileName = filePath[filePath.length - 1]
+            // BUG REPORT #3
         if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png') {
             /* istanbul ignore next */
             this.firestore

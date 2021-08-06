@@ -34,6 +34,7 @@ export default class Login {
     handleSubmitAdmin = e => {
         const user = {
             type: "Admin",
+            // BUG REPORT #2 - BILLS - ajout de 'date' pour les para a & b
             email: e.target.querySelector(`input[data-testid="admin-email-input"]`).value,
             password: e.target.querySelector(`input[data-testid="admin-password-input"]`).value,
             status: "connected"

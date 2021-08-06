@@ -20,6 +20,8 @@ const row = (bill) => {
     `);
 };
 
+
+// BUG REPORT #1 - BILLS
 const rows = (data) => {
     if (data !== undefined) {
         data.sort(function(a, b) {
@@ -31,7 +33,6 @@ const rows = (data) => {
     }
 
 };
-
 
 export default ({ data: bills, loading, error }) => {
 

@@ -18,7 +18,7 @@ const onNavigate = (pathname) => {
 
 describe("Given I am connected as an employee", () => {
     describe("When I am on NewBill Page", () => {
-        test("Then the page instruction should be staded", () => {
+        test("Then the page instruction should be stated", () => {
             document.body.innerHTML = NewBillUI();
             expect(screen.getAllByText("Envoyer une note de frais")).toBeTruthy();
         });
